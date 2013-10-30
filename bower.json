@@ -1,0 +1,23 @@
+{
+  "name": "floating-label",
+  "description": "Floating label plugin",
+  "version": "0.1.0",
+  "homepage": "https://github.com/firstandthird/floating-label",
+  "license": "MIT",
+  "copyright": "First + Third",
+  "main": "dist/floating-label.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "assert": "*",
+    "blanket": "*"
+  },
+  "ignore": [
+    "test",
+    "example",
+    "lib",
+    "Gruntfile.js",
+    "package.json",
+    "grunt"
+  ]
+}

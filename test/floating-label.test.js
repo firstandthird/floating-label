@@ -1,0 +1,4 @@
+
+suite('floating-label', function() {
+
+});
