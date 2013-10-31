@@ -15,9 +15,16 @@
 </head>
 <body>
   <div id="mocha"></div>
-  <div id="fixture" style="display: none">
+  <div id="fixture">
+
+    <form>
+      <p><input id="first-name" type="text" data-floating-label="First Name"></p>
+      <p><input id="last-name" type="text" data-floating-label="Last Name"></p>
+      <p><textarea id="address" data-floating-label="Address"></textarea></p>
+    </form>
 
   </div>
+  <script src="../bower_components/jquery/jquery.js"></script>
   <script src="../dist/floating-label.js" data-cover></script>
   <script src="floating-label.test.js"></script>
   <script>

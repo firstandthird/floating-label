@@ -7,6 +7,7 @@
   "copyright": "First + Third",
   "main": "dist/floating-label.js",
   "dependencies": {
+    "jquery": "~2.0.3"
   },
   "devDependencies": {
     "assert": "*",

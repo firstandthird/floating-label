@@ -6,6 +6,16 @@
   </head>
   <body>
 
+    <form>
+      <p><input type="text" data-floating-label="First Name"></p>
+      <p><input type="text" data-floating-label="Last Name"></p>
+      <p><textarea data-floating-label="Address"></textarea></p>
+    </form>
+
+    <script src="../bower_components/jquery/jquery.js"></script>
     <script src="../dist/floating-label.js"></script>
+    <script>
+    $('[data-floating-label]').floatingLabel();
+    </script>
   </body>
 </html>
