@@ -53,6 +53,10 @@ suite('floating-label', function() {
 
       assert.equal($('label[for="' + $('[placeholder]').first().attr('id') + '"]').stop(true, true).css('opacity'), "1");
     });
+
+    test('should only be created if existing label doesn\'t exist', function() {
+      assert.equal($('label[for="' + $('[placeholder]').eq(1).attr('id') + '"]').length, 1);
+    });
   });
 
   suite('inputs', function() {
@@ -61,7 +65,6 @@ suite('floating-label', function() {
     });
 
     test('should have active class with empty input', function() {
-      console.log($('[placeholder]').first().val());
       assert.ok($('[placeholder]').first().hasClass('floatingLabel-active'));
     });
 
