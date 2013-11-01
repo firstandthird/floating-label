@@ -15,7 +15,31 @@ Floating label plugin
 
 ##Usage
 
-Docs coming soon
+Basic usage:
+
+```javascript
+// No Options
+$('[placeholder]').floatingLabel();
+
+// Options
+$('[placeholder]').floatingLabel({
+  animateDuration: 200
+});
+```
+
+#### Options
+
+```
+inputEvents: 'propertychange keyup input paste'
+labelStyles: {
+  display: 'block',
+  position: 'relative'
+}
+animateDuration: 100
+animateEasing: function (x, t, b, c, d) {
+  return -c * ((t=t/d-1)*t*t*t - 1) + b;
+}
+```
 
 ##Development
 
