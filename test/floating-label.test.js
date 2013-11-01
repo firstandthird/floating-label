@@ -1,7 +1,7 @@
 suite('floating-label', function() {
 
   teardown(function(){
-    $('[data-floating-label]').attr('class', '').removeData();
+    $('[placeholder]').attr('class', '').val('').removeData();
     $('label').remove();
   });
 
@@ -13,51 +13,71 @@ suite('floating-label', function() {
 
   suite('labels', function() {
     setup(function(){
-      $('[data-floating-label]').floatingLabel();
+      $('[placeholder]').floatingLabel();
     });
 
     test('should be rendered', function() {
-      assert.equal($('label').length, $('[data-floating-label]').length);
+      assert.equal($('label').length, $('[placeholder]').length);
     });
 
     test('should have for="" matching input id', function() {
-      assert.equal($('label').first().attr('for'), $('[data-floating-label]').first().attr('id'));
+      assert.equal($('label').first().attr('for'), $('[placeholder]').first().attr('id'));
     });
 
     test('should have focus class when input is in focus', function() {
-      $('[data-floating-label]').first().trigger('focus');
-      assert.ok($('label[for="' + $('[data-floating-label]').first().attr('id') + '"]').hasClass('floatingLabel-focus'));
+      $('[placeholder]').first().trigger('focus');
+      assert.ok($('label[for="' + $('[placeholder]').first().attr('id') + '"]').hasClass('floatingLabel-focus'));
     });
 
     test('should not have focus class when input is not in focus', function() {
-      $('[data-floating-label]').first().trigger('focus');
-      $('[data-floating-label]').first().trigger('blur');
-      assert.ok(!$('label[for="' + $('[data-floating-label]').first().attr('id') + '"]').hasClass('floatingLabel-focus'));
+      $('[placeholder]').first().trigger('focus');
+      $('[placeholder]').first().trigger('blur');
+      assert.ok(!$('label[for="' + $('[placeholder]').first().attr('id') + '"]').hasClass('floatingLabel-focus'));
+    });
+
+    test('should be invisible with empty value', function(done) {
+      assert.equal($('label[for="' + $('[placeholder]').first().attr('id') + '"]').css('opacity'), "0");
+
+      $('[placeholder]').first().val('Testing').trigger('keyup');
+
+      $('[placeholder]').first().val('').trigger('keyup');
+
+      setTimeout(function() {
+        assert.equal($('label[for="' + $('[placeholder]').first().attr('id') + '"]').stop(true, true).css('opacity'), "0");
+        done();
+      }, 5);
+    });
+
+    test('should be visible with non-empty value', function() {
+      $('[placeholder]').first().val('Testing').trigger('keyup');
+
+      assert.equal($('label[for="' + $('[placeholder]').first().attr('id') + '"]').stop(true, true).css('opacity'), "1");
     });
   });
 
   suite('inputs', function() {
     setup(function(){
-      $('[data-floating-label]').floatingLabel();
+      $('[placeholder]').floatingLabel();
     });
 
     test('should have active class with empty input', function() {
-      assert.ok($('[data-floating-label]').first().hasClass('floatingLabel-active'));
+      console.log($('[placeholder]').first().val());
+      assert.ok($('[placeholder]').first().hasClass('floatingLabel-active'));
     });
 
     test('should not have active class with non-empty input', function() {
-      $('[data-floating-label]').first().val('Testing').trigger('keyup');
-      assert.ok(!$('[data-floating-label]').first().hasClass('floatingLabel-active'));
+      $('[placeholder]').first().val('Testing').trigger('keyup');
+      assert.ok(!$('[placeholder]').first().hasClass('floatingLabel-active'));
     });
 
     test('should have inactive class with non-empty input', function() {
-      $('[data-floating-label]').first().val('Testing').trigger('keyup');
-      assert.ok($('[data-floating-label]').first().hasClass('floatingLabel-inactive'));
+      $('[placeholder]').first().val('Testing').trigger('keyup');
+      assert.ok($('[placeholder]').first().hasClass('floatingLabel-inactive'));
     });
 
     test('should not have inactive class with empty input', function() {
-      $('[data-floating-label]').first().val('').trigger('keyup');
-      assert.ok(!$('[data-floating-label]').first().hasClass('floatingLabel-inactive'));
+      $('[placeholder]').first().val('').trigger('keyup');
+      assert.ok(!$('[placeholder]').first().hasClass('floatingLabel-inactive'));
     });
   });
 });
