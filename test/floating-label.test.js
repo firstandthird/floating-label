@@ -64,23 +64,23 @@ suite('floating-label', function() {
       $('[placeholder]').floatingLabel();
     });
 
-    test('should have active class with empty input', function() {
-      assert.ok($('[placeholder]').first().hasClass('floatingLabel-active'));
-    });
-
-    test('should not have active class with non-empty input', function() {
-      $('[placeholder]').first().val('Testing').trigger('keyup');
+    test('should not have active class with empty input', function() {
       assert.ok(!$('[placeholder]').first().hasClass('floatingLabel-active'));
     });
 
-    test('should have inactive class with non-empty input', function() {
+    test('should have active class with non-empty input', function() {
       $('[placeholder]').first().val('Testing').trigger('keyup');
-      assert.ok($('[placeholder]').first().hasClass('floatingLabel-inactive'));
+      assert.ok($('[placeholder]').first().hasClass('floatingLabel-active'));
     });
 
-    test('should not have inactive class with empty input', function() {
-      $('[placeholder]').first().val('').trigger('keyup');
+    test('should not have inactive class with non-empty input', function() {
+      $('[placeholder]').first().val('Testing').trigger('keyup');
       assert.ok(!$('[placeholder]').first().hasClass('floatingLabel-inactive'));
+    });
+
+    test('should have inactive class with empty input', function() {
+      $('[placeholder]').first().val('').trigger('keyup');
+      assert.ok($('[placeholder]').first().hasClass('floatingLabel-inactive'));
     });
   });
 });
