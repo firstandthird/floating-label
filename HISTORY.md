@@ -1,4 +1,16 @@
 
+0.2.0 / 2013-11-21 
+==================
+
+ * Merge pull request #5 from firstandthird/feature/2-select-box-label
+ * Merge branch 'master' into feature/2-select-box-label
+ * Merge pull request #7 from firstandthird/feature/6-set-placeholder
+ * Added ability to set placeholder text.
+ * Select inputs get labels.
+ * Merge pull request #4 from Hypercubed/master
+ * Moved grunt-gh-pages to devDependencies, where it should be
+ * Added very simple grunt gh-pages
+
 0.1.0 / 2013-11-18 
 ==================
 

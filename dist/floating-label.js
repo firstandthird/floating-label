@@ -8,7 +8,7 @@
 */
 (function($){
   var defaults = {
-    inputEvents: 'propertychange keyup input paste',
+    inputEvents: 'propertychange keyup input paste change',
     labelStyles: {
       display: 'block',
       position: 'relative'
@@ -19,9 +19,17 @@
     },
   };
 
-  function floatingLabel(el, options) {
-    this.options = $.extend(defaults, options);
+  function floatingLabel(el, options, params) {
     this.el = $(el);
+
+    // Support for helper methods
+    if(typeof options === 'string') {
+      return this[options].apply(this, params);
+    }
+
+    this.options = $.extend(defaults, options);
+
+    this.el.data('floatingLabel-options', this.options);
 
     this.active = false;
 
@@ -45,7 +53,7 @@
 
     this.oldVal = val;
 
-    if(val === '') {
+    if(val === '' || val === null) {
       if(!this.active) {
         this.active = true;
         this.el.addClass('floatingLabel-inactive').removeClass('floatingLabel-active');
@@ -76,6 +84,7 @@
 
   floatingLabel.prototype.generateLabel = function() {
     var existingLabel = '';
+    var labelText = '';
 
     this.label = $('<label/>');
 
@@ -91,7 +100,13 @@
       }
     }
 
-    this.label.text(this.el.attr('placeholder'));
+    if(this.el.is('select') && !labelText) {
+      labelText = this.el.find('option').first().text();
+    } else {
+      labelText = this.el.attr('placeholder');
+    }
+
+    this.label.text(labelText);
     this.label.css(this.options.labelStyles);
 
     this.label.insertBefore(this.el);
@@ -102,9 +117,15 @@
     });
   };
 
+  floatingLabel.prototype.setPlaceholder = function(text) {
+    this.el.attr('placeholder', text);
+    $('label[for="' + this.el.attr('id') + '"]').text(text);
+  };
+
   $.fn.floatingLabel = function(options) {
+    var params = Array.prototype.slice.call(arguments).slice(1);
     return this.each(function(){
-      new floatingLabel(this, options);
+      new floatingLabel(this, options, params);
     });
   };
 }(jQuery));
