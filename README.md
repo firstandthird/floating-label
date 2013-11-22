@@ -41,6 +41,18 @@ animateEasing: function (x, t, b, c, d) {
 }
 ```
 
+## API
+
+#### Changing Placeholder
+
+This will change both the palceholder and the label.
+
+```javascript
+$('#someInput').floatingLabel();
+$('#someInput').floatingLabel('setPlaceholder', 'New Placeholder');
+```
+
+
 ##Development
 
 ###Requirements

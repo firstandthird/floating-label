@@ -83,4 +83,19 @@ suite('floating-label', function() {
       assert.ok($('[placeholder]').first().hasClass('floatingLabel-inactive'));
     });
   });
+
+  suite('set placeholder', function() {
+    setup(function(){
+      $('[placeholder]').floatingLabel();
+    });
+
+    test('should update placeholder', function() {
+      var labelText = 'This is a test';
+      
+      $('[placeholder]').first().floatingLabel('setPlaceholder', labelText);
+
+      assert.equal($('[placeholder]').first().attr('placeholder'), labelText);
+      assert.equal($('label').first().text(), labelText);
+    });
+  });
 });
