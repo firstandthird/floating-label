@@ -35,12 +35,20 @@
       <p><input type="text" placeholder="First Name" id="first-name"></p>
       <p><label for="last-name">Last Name</label><input type="text" placeholder="Last Name" id="last-name"></p>
       <p><textarea placeholder="Address" id="address"></textarea></p>
+      <p>
+        <select id="country">
+          <option selected disabled>Country</option>
+          <option>United States</option>
+          <option>Canada</option>
+          <option>Mexico</option>
+        </select>
+      </p>
     </form>
 
     <script src="../bower_components/jquery/jquery.js"></script>
     <script src="../dist/floating-label.js"></script>
     <script>
-    $('[placeholder]').floatingLabel();
+    $('[placeholder], select').floatingLabel();
     </script>
   </body>
 </html>
