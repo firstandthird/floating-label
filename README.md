@@ -1,6 +1,6 @@
 #floating-label
 
-Floating label plugin
+Floating label plugin. [Demo](http://firstandthird.github.io/floating-label/example/)
 
 ##Installation
 
