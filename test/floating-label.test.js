@@ -84,6 +84,16 @@ suite('floating-label', function() {
     });
   });
 
+  suite('select input', function() {
+    setup(function(){
+      $('[placeholder], select').floatingLabel();
+    });
+
+    test('should have label with text matching first option', function() {
+      assert.equal($('#country option').first().text(), $('label[for="country"]').text());
+    });
+  });
+
   suite('set placeholder', function() {
     setup(function(){
       $('[placeholder]').floatingLabel();
