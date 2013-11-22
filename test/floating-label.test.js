@@ -93,4 +93,19 @@ suite('floating-label', function() {
       assert.equal($('#country option').first().text(), $('label[for="country"]').text());
     });
   });
+
+  suite('set placeholder', function() {
+    setup(function(){
+      $('[placeholder]').floatingLabel();
+    });
+
+    test('should update placeholder', function() {
+      var labelText = 'This is a test';
+      
+      $('[placeholder]').first().floatingLabel('setPlaceholder', labelText);
+
+      assert.equal($('[placeholder]').first().attr('placeholder'), labelText);
+      assert.equal($('label').first().text(), labelText);
+    });
+  });
 });
